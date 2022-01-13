@@ -16,12 +16,14 @@ class TodoApp extends React.Component {
 
   add() {
     this.setState({
-      todoList: this.state.todoList.concat(this.state.value)
+      todoList: this.state.todoList.concat(this.state.value),
     })
   }
 
   render() {
-    console.log(this.state.todoList);
+    const todoListNode = this.state.todoList.map((todo, idx) => {
+      return <li key={idx}>{todo}</li>
+    })
     return (
       <div>
         <h1>TODO App</h1>
@@ -32,8 +34,10 @@ class TodoApp extends React.Component {
             onChange={e => this.onChange(e)}
           />
         </div>
-        {/* <p>{this.state.value}</p> */}
-        <button onClick={() => this.add}>追加</button>
+        <button onClick={() => this.add()}>追加</button>
+        <ul>
+          {todoListNode}
+        </ul>
       </div>
     );
   }
